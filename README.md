@@ -37,7 +37,7 @@ This project did take a substantial amount of time. I'm not certain about Riot A
 If you need anything special, please email me at "mes-dashboard.claim881@passmail.net". As the sole admin, I have the power to create custom keys. If you need a special arrangement, then we can work something out.
 
 ## Shameless Plug
-###Maelstrom Esports Player Association (MESPA)  applications ARE NOW OPEN!
+### Maelstrom Esports Player Association (MESPA)  applications ARE NOW OPEN!
 
 🔥
  What We’re Building:
