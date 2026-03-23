@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MES Dashboard — Pricing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:    #c8a23c;
+      --gold-dim: rgba(200,162,60,0.15);
+      --bg:      #0a0a14;
+      --surface: #13131f;
+      --card:    #1a1a2e;
+      --border:  #2a2a3e;
+      --text:    #e0e0e0;
+      --dim:     #888;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      text-align: center;
+      padding: 60px 24px 40px;
+      background: linear-gradient(180deg, rgba(200,162,60,0.05) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 24px;
+    }
+
+    .billing-toggle {
+      display: inline-flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .billing-toggle button {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 24px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      color: var(--dim);
+    }
+
+    .billing-toggle button.active {
+      background: var(--gold);
+      color: #0a0a14;
+    }
+
+    .save-badge {
+      display: inline-block;
+      background: rgba(63,185,80,0.15);
+      color: #3fb950;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* ── Pricing grid ── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 20px;
+      padding-left: 2px;
+    }
+
+    /* Demo row */
+    .demo-row {
+      margin-bottom: 48px;
+    }
+
+    .demo-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .demo-card:hover {
+      border-color: var(--gold);
+    }
+
+    .demo-info h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .demo-info p {
+      font-size: 14px;
+      color: var(--dim);
+    }
+
+    .demo-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .demo-price span {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: var(--dim);
+      font-weight: 400;
+    }
+
+    /* Plan cards */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .plan-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+    }
+
+    .plan-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .plan-card.featured {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, #1a1a2e 0%, #1e1a2a 100%);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #0a0a14;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 3px 14px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .plan-type {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .plan-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .plan-price {
+      margin-bottom: 20px;
+    }
+
+    .plan-price .amount {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 42px;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .plan-price .currency {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: var(--dim);
+      vertical-align: top;
+      margin-top: 6px;
+      display: inline-block;
+    }
+
+    .plan-price .period {
+      font-size: 13px;
+      color: var(--dim);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .plan-price .yearly-equiv {
+      font-size: 12px;
+      color: #3fb950;
+      margin-top: 2px;
+    }
+
+    .plan-features {
+      list-style: none;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .plan-features li {
+      font-size: 14px;
+      color: var(--dim);
+      padding: 5px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .plan-features li::before {
+      content: '✓';
+      color: #3fb950;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .plan-features li.highlight {
+      color: var(--text);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover { opacity: 0.85; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #c8a23c, #8a6820);
+      color: #0a0a14;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+    }
+
+    .btn-demo {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 0.2s;
+    }
+
+    .btn-demo:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── FAQ ── */
+    .faq {
+      max-width: 680px;
+      margin: 60px auto 0;
+      padding: 0 24px;
+    }
+
+    .faq h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .faq-item h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .faq-item p {
+      font-size: 14px;
+      color: var(--dim);
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--dim);
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .logo { font-size: 36px; }
+      .plans-grid { grid-template-columns: 1fr; }
+      .demo-card { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">⚔ MES DASHBOARD</div>
+  <div class="tagline">League of Legends Broadcast Overlay Suite</div>
+  <div class="billing-toggle">
+    <button id="btn-monthly" class="active" onclick="setBilling('monthly')">Monthly</button>
+    <button id="btn-yearly" onclick="setBilling('yearly')">Yearly <span class="save-badge">SAVE UP TO 33%</span></button>
+  </div>
+</header>
+
+<main>
+  <!-- Demo -->
+  <div class="demo-row">
+    <div class="section-label">Try before you buy</div>
+    <div class="demo-card">
+      <div class="demo-info">
+        <h3>7-Day Demo</h3>
+        <p>Full access for one week · 1 machine · No subscription required</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <div class="demo-price">$1.00 <span>one-time</span></div>
+        <!-- REPLACE href WITH YOUR STRIPE DEMO PAYMENT LINK -->
+        <a href="https://buy.stripe.com/8x2bJ11fd0IA9RcbbJfnO00" class="btn-demo">Get Demo →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTHLY PLANS -->
+  <div id="monthly-plans">
+    <div class="section-label">Solo caster</div>
+    <div class="plans-grid" style="margin-bottom:48px;">
+      <div class="plan-card">
+        <div class="plan-type">Solo</div>
+        <div class="plan-name">Monthly</div>
+        <div class="plan-price">
+          <span class="currency">$</span><span class="amount">X</span>
+          <span class="period">per month</span>
+        </div>
+        <ul class="plan-features">
+          <li class="highlight">1 machine activation</li>
+          <li>All overlay types</li>
+          <li>Draft, Groups, Bracket</li>
+          <li>Fearless draft support</li>
+          <li>3-day grace period</li>
+          <li>Email support</li>
+        </ul>
+        <!-- REPLACE href WITH YOUR STRIPE SOLO MONTHLY LINK -->
+        <a href="https://buy.stripe.com/cNibJ13nlcri0gC6VtfnO03" class="btn btn-outline">Get Started</a>
+      </div>
+    </div>
+
+    <div class="section-label">Organizations &amp; casting teams</div>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-type">Org</div>
+        <div class="plan-name">Monthly</div>
+        <div class="plan-price">
+          <span class="currency">$</span><span class="amount">X</span>
+          <span class="period">per month</span>
+        </div>
+        <ul class="plan-features">
+          <li class="highlight">Up to 8 machine activations</li>
+          <li>All overlay types</li>
+          <li>Draft, Groups, Bracket</li>
+          <li>Fearless draft support</li>
+          <li>3-day grace period</li>
+          <li>Priority email support</li>
+        </ul>
+        <!-- REPLACE href WITH YOUR STRIPE ORG MONTHLY LINK -->
+        <a href="https://buy.stripe.com/14A6oH2jh4YQbZk0x5fnO04" class="btn btn-outline">Get Started</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- YEARLY PLANS -->
+  <div id="yearly-plans" style="display:none;">
+    <div class="section-label">Solo caster</div>
+    <div class="plans-grid" style="margin-bottom:48px;">
+      <div class="plan-card featured">
+        <div class="featured-badge">Save 33%</div>
+        <div class="plan-type">Solo</div>
+        <div class="plan-name">Yearly</div>
+        <div class="plan-price">
+          <span class="currency">$</span><span class="amount">X</span>
+          <span class="period">per year</span>
+          <div class="yearly-equiv">~$X/mo — 4 months free</div>
+        </div>
+        <ul class="plan-features">
+          <li class="highlight">1 machine activation</li>
+          <li>All overlay types</li>
+          <li>Draft, Groups, Bracket</li>
+          <li>Fearless draft support</li>
+          <li>3-day grace period</li>
+          <li>Email support</li>
+        </ul>
+        <!-- REPLACE href WITH YOUR STRIPE SOLO YEARLY LINK -->
+        <a href="https://buy.stripe.com/eVqdR9cXVcri7J4frZfnO02" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+
+    <div class="section-label">Organizations &amp; casting teams</div>
+    <div class="plans-grid">
+      <div class="plan-card featured">
+        <div class="featured-badge">Save 20%</div>
+        <div class="plan-type">Org</div>
+        <div class="plan-name">Yearly</div>
+        <div class="plan-price">
+          <span class="currency">$</span><span class="amount">X</span>
+          <span class="period">per year</span>
+          <div class="yearly-equiv">~$X/mo</div>
+        </div>
+        <ul class="plan-features">
+          <li class="highlight">Up to 8 machine activations</li>
+          <li>All overlay types</li>
+          <li>Draft, Groups, Bracket</li>
+          <li>Fearless draft support</li>
+          <li>3-day grace period</li>
+          <li>Priority email support</li>
+        </ul>
+        <!-- REPLACE href WITH YOUR STRIPE ORG YEARLY LINK -->
+        <a href="https://buy.stripe.com/7sYeVd4rp62U6F0gw3fnO01" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FAQ -->
+<div class="faq">
+  <h2>FAQ</h2>
+  <div class="faq-item">
+    <h3>What is a machine activation?</h3>
+    <p>Each PC you install MES Dashboard on uses one activation. Solo plans allow 1 machine, Org plans allow up to 8. You can deactivate old machines by contacting support.</p>
+  </div>
+  <div class="faq-item">
+    <h3>What happens when my subscription expires?</h3>
+    <p>You get a 3-day grace period before the app requires renewal. Your data is never deleted.</p>
+  </div>
+  <div class="faq-item">
+    <h3>How do I receive my license key?</h3>
+    <p>Your license key is emailed to you automatically after purchase. Enter it in the app's activation screen to get started.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Can I upgrade from Solo to Org?</h3>
+    <p>Yes — contact support and we'll help you switch plans and transfer your remaining time.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Do you offer refunds?</h3>
+    <p>We offer a 7-day demo so you can try before committing. Refunds are handled case by case — contact support.</p>
+  </div>
+</div>
+
+<footer>
+  <p>Questions? <a href="mailto:mes-dashboard.claim881@passmail.net">Contact support</a></p>
+  <p style="margin-top:8px;">© 2025 MES Dashboard. All rights reserved.</p>
+</footer>
+
+<script>
+  // ── Set your prices here ───────────────────────────────────────────────
+  var PRICES = {
+    solo: { monthly: '3.00', yearly: '24.00' },  // e.g. 10, 80  (33% off = 4 months free)
+    org:  { monthly: '10.00', yearly: '96.00' },  // e.g. 20, 192 (20% off)
+  };
+
+  var billing = 'monthly';
+
+  function setBilling(mode) {
+    billing = mode;
+
+    // Update toggle button styles
+    document.querySelectorAll('.billing-toggle button').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    document.getElementById('btn-' + mode).classList.add('active');
+
+    // Show/hide the right sections
+    document.getElementById('monthly-plans').style.display = mode === 'monthly' ? '' : 'none';
+    document.getElementById('yearly-plans').style.display  = mode === 'yearly'  ? '' : 'none';
+  }
+
+  setBilling('monthly');
+</script>
+
+</body>
+</html>
