@@ -3,7 +3,7 @@ This is a companion app to Streamlabs/OBS to allow for higher quality content wh
 
 Current release download: https://github.com/Texturace/mes-casting-dashboard/releases/tag/v1.0.6
 
-Video demonstration of me using the tool (and making some of the basic mistakes with my tool as well): https://youtube.com/live/5cHnND6gcf4?feature=share
+Video demonstration of me using the tool: [[https://youtube.com/live/5cHnND6gcf4?feature=share]()](https://youtu.be/b9MbJszumbY)
 
 ## Current Features
 - Fully functional draft (Picks and Bans populate in the correct order AND each lock-in has a spotlight animation)
