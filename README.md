@@ -37,7 +37,7 @@ This project did take a substantial amount of time to troubleshoot and create. I
   
 If you need anything special, please email me at "mes-dashboard.claim881@passmail.net". As the sole admin, I have the power to create custom keys. If you need a special arrangement, then we can work something out.
 
-For general needs, you can select which plan fits best for you here: 
+For general needs, you can select which plan fits best here: https://texturace.github.io/mes-casting-dashboard/
 
 ## Shameless Plug
 ### Maelstrom Esports Player Association (MESPA)  applications ARE NOW OPEN!
