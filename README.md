@@ -29,12 +29,13 @@ This project was motivated by EsportsDash (https://docs.esportsdash.com). Esport
 
 
 ### Licensing
-This project did take a substantial amount of time. I'm not certain about Riot API, but I know that Drafter API access requires a monthly subscription ($20 + you have to create all the draft links *through* the API). The goal of licensing is never going to be to make a substantial amount of money.
+This project did take a substantial amount of time to troubleshoot and create. I'm not certain about Riot API, but I know that Drafter API access requires a monthly subscription ($20 + you have to create all the draft links *through* the API). The goal of licensing is never going to be to make a substantial amount of money.
 - Licensing will cover my external licensing fees as more implementation is developed.
 - Licensing will help me afford 2-ply toilet paper instead of 1-ply.
 - Licensing will go back into MES to help pay coaches and fund team entry fees.
 - An eventual domain so that I don't have to use a generic "onboarding@resend.dev" email for key distribution
 If you need anything special, please email me at "mes-dashboard.claim881@passmail.net". As the sole admin, I have the power to create custom keys. If you need a special arrangement, then we can work something out.
+For general needs, you can select which plan fits best for you here: 
 
 ## Shameless Plug
 ### Maelstrom Esports Player Association (MESPA)  applications ARE NOW OPEN!
