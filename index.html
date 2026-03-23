@@ -106,12 +106,10 @@
     }
 
     .section-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--dim);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: var(--text);
       margin-bottom: 20px;
       padding-left: 2px;
     }
@@ -211,7 +209,7 @@
 
     .plan-type {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
+      font-size: 16px;
       font-weight: 700;
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -255,7 +253,7 @@
     }
 
     .plan-price .yearly-equiv {
-      font-size: 12px;
+      font-size: 15px;
       color: #3fb950;
       margin-top: 2px;
     }
@@ -392,7 +390,7 @@
 <body>
 
 <header>
-  <div class="logo">⚔ MES DASHBOARD</div>
+  <div class="logo">⚔ MES CASTING DASHBOARD</div>
   <div class="tagline">League of Legends Broadcast Overlay Suite</div>
   <div class="billing-toggle">
     <button id="btn-monthly" class="active" onclick="setBilling('monthly')">Monthly</button>
@@ -425,7 +423,7 @@
         <div class="plan-type">Solo</div>
         <div class="plan-name">Monthly</div>
         <div class="plan-price">
-          <span class="currency">$</span><span class="amount">X</span>
+          <span class="currency">$</span><span class="amount" id="solo-monthly-amount">X</span>
           <span class="period">per month</span>
         </div>
         <ul class="plan-features">
@@ -447,7 +445,7 @@
         <div class="plan-type">Org</div>
         <div class="plan-name">Monthly</div>
         <div class="plan-price">
-          <span class="currency">$</span><span class="amount">X</span>
+          <span class="currency">$</span><span class="amount" id="org-monthly-amount">X</span>
           <span class="period">per month</span>
         </div>
         <ul class="plan-features">
@@ -462,6 +460,13 @@
         <a href="https://buy.stripe.com/14A6oH2jh4YQbZk0x5fnO04" class="btn btn-outline">Get Started</a>
       </div>
     </div>
+
+    <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 28px;text-align:center;">
+      <p style="font-size:15px;color:var(--dim);line-height:1.6;">
+        Need more activations or a custom plan?<br>
+        Custom arrangements can be made by <a href="/cdn-cgi/l/email-protection#d9b4bcaaf4bdb8aab1bbb6b8abbdf7bab5b8b0b4e1e1e899a9b8aaaab4b8b0b5f7b7bcad" style="color:var(--gold);text-decoration:none;font-weight:600;">contacting support</a>.
+      </p>
+    </div>
   </div>
 
   <!-- YEARLY PLANS -->
@@ -473,9 +478,9 @@
         <div class="plan-type">Solo</div>
         <div class="plan-name">Yearly</div>
         <div class="plan-price">
-          <span class="currency">$</span><span class="amount">X</span>
+          <span class="currency">$</span><span class="amount" id="solo-yearly-amount">X</span>
           <span class="period">per year</span>
-          <div class="yearly-equiv">~$X/mo — 4 months free</div>
+          <div class="yearly-equiv" id="solo-yearly-equiv"></div>
         </div>
         <ul class="plan-features">
           <li class="highlight">1 machine activation</li>
@@ -497,9 +502,9 @@
         <div class="plan-type">Org</div>
         <div class="plan-name">Yearly</div>
         <div class="plan-price">
-          <span class="currency">$</span><span class="amount">X</span>
+          <span class="currency">$</span><span class="amount" id="org-yearly-amount">X</span>
           <span class="period">per year</span>
-          <div class="yearly-equiv">~$X/mo</div>
+          <div class="yearly-equiv" id="org-yearly-equiv"></div>
         </div>
         <ul class="plan-features">
           <li class="highlight">Up to 8 machine activations</li>
@@ -512,6 +517,13 @@
         <!-- REPLACE href WITH YOUR STRIPE ORG YEARLY LINK -->
         <a href="https://buy.stripe.com/7sYeVd4rp62U6F0gw3fnO01" class="btn btn-primary">Get Started</a>
       </div>
+    </div>
+
+    <div style="margin-top:20px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 28px;text-align:center;">
+      <p style="font-size:15px;color:var(--dim);line-height:1.6;">
+        Need more activations or a custom plan?<br>
+        Custom arrangements can be made by <a href="/cdn-cgi/l/email-protection#d9b4bcaaf4bdb8aab1bbb6b8abbdf7bab5b8b0b4e1e1e899a9b8aaaab4b8b0b5f7b7bcad" style="color:var(--gold);text-decoration:none;font-weight:600;">contacting support</a>.
+      </p>
     </div>
   </div>
 </main>
@@ -542,11 +554,11 @@
 </div>
 
 <footer>
-  <p>Questions? <a href="mailto:mes-dashboard.claim881@passmail.net">Contact support</a></p>
-  <p style="margin-top:8px;">© 2025 MES Dashboard. All rights reserved.</p>
+  <p>Questions? <a href="/cdn-cgi/l/email-protection#d9b4bcaaf4bdb8aab1bbb6b8abbdf7bab5b8b0b4e1e1e899a9b8aaaab4b8b0b5f7b7bcad">Contact support</a></p>
+  <p style="margin-top:8px;">© 2026 MES Dashboard. All rights reserved.</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── Set your prices here ───────────────────────────────────────────────
   var PRICES = {
     solo: { monthly: '3.00', yearly: '24.00' },  // e.g. 10, 80  (33% off = 4 months free)
@@ -569,6 +581,22 @@
     document.getElementById('yearly-plans').style.display  = mode === 'yearly'  ? '' : 'none';
   }
 
+  function updatePrices() {
+    var sm = document.getElementById('solo-monthly-amount');
+    var om = document.getElementById('org-monthly-amount');
+    var sy = document.getElementById('solo-yearly-amount');
+    var oy = document.getElementById('org-yearly-amount');
+    var se = document.getElementById('solo-yearly-equiv');
+    var oe = document.getElementById('org-yearly-equiv');
+    if (sm) sm.textContent = PRICES.solo.monthly;
+    if (om) om.textContent = PRICES.org.monthly;
+    if (sy) sy.textContent = PRICES.solo.yearly;
+    if (oy) oy.textContent = PRICES.org.yearly;
+    if (se) se.textContent = '~$' + (parseFloat(PRICES.solo.yearly) / 12).toFixed(2) + '/mo';
+    if (oe) oe.textContent = '~$' + (parseFloat(PRICES.org.yearly) / 12).toFixed(2) + '/mo';
+  }
+
+  updatePrices();
   setBilling('monthly');
 </script>
 
