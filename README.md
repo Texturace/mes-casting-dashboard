@@ -1,3 +1,6 @@
+# Creator Personal Update (4/5/2026)
+I'm currently pushing v1.1.0. There are a handful of QoL bugs to work through, but I want to get this update out because I'm moving halfway across the country and likely won't have another chance to troubleshoot until the very end of April (or even until May). As always, if you run into issues or have feature recommendations, please reach out to me. Until v1.1.X gets released to address bugfixes, if anything is flat-out breaking, then just roll it back to the previous version.
+
 # MES Casting Dashboard
 This is a companion app to Streamlabs/OBS to allow for higher quality content when casting. It provides a Draft Screen, Head-to-Head Screen, Brackets, and Groups. As this grows, I will attempt to incorporate Riot API and Drafter API to improve quality of life, and to eventually create in-game templates as well. Currently, everything relies on manual inputs in the dashboard. v1.0.6 is the first official release (previous versions were internal testing or included updates suggested by people interested in the project).
 
@@ -18,7 +21,7 @@ Video demonstration of me using the tool: https://youtu.be/b9MbJszumbY
 - Riot API Implementation: Part 1, pulling Solo Queue stats (e.g., BlueJungler {Xin Zhao} 4-3 (57.14% WR) {KDA}); Part 2, creating custom in-game overlays that always track gold/stacks/etc.
 - Drafter API Implementation: Why manually input everything in the draft menu if we can just pull everything (along with the timer) from Drafter itself?
 - Cross-Platform Functionality: 95%+ of you are probably running everything on Windows, but enabling MacOS support (and Linux support for those casting from Linux while using a capture card from a computer running Windows/MacOS ... AKA me in June/July 2026)
-- Multiple Resolutions: Currently, everything only works for 1920x1080, but it's possible that I can build some type of toggle that would allow you to broadcast from the "standard" resolutions of HD, QHD, and UHD.
+- ~~Multiple Resolutions: Currently, everything only works for 1920x1080, but it's possible that I can build some type of toggle that would allow you to broadcast from the "standard" resolutions of HD, QHD, and UHD.~~ (v1.1.0)
 
 ## What to do if Things Break
 1) Click "Send to Overlay": I have found some non-replicable bugs here and there that have all been resolved by clicking the "Send to Overlay" button. If you find a bug that IS replicable, please send me detailed steps and screenshots for me to troubleshoot and correct the issue.
